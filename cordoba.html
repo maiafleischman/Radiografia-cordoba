@@ -1,0 +1,370 @@
+<title>Córdoba en criollo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: una columna angosta de lectura, igual que la web de Rosario; cada bloque responde una pregunta sobre la ciudad. */
+:root {
+  --celeste: #5B8DB8;
+  --mandarina: #F26B3A;
+  --tinta: #1F2430;
+  --papel: #F7F2E9;
+  --verde: #2E8B6A;
+
+  --bg: var(--papel);
+  --fg: var(--tinta);
+  --muted: #5d6270;
+  --line: #e2dccf;
+  --panel: #fffdf8;
+  --brand: var(--celeste);
+  --brand-strong: #3f6f99;
+  --accent: var(--mandarina);
+  --green: var(--verde);
+  --track: #ebe5d8;
+  --seat-empty: #d9d2c3;
+
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171b24; --fg: #F2EDE3; --muted: #a7acb8; --line: #2c3240; --panel: #1f2430;
+    --brand: #7FA8CE; --brand-strong: #9cbddb; --accent: #F5845B; --green: #4fb08c; --track: #2a303d; --seat-empty: #343a48; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171b24; --fg: #F2EDE3; --muted: #a7acb8; --line: #2c3240; --panel: #1f2430;
+  --brand: #7FA8CE; --brand-strong: #9cbddb; --accent: #F5845B; --green: #4fb08c; --track: #2a303d; --seat-empty: #343a48; color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 44rem; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2rem 4rem; display: flex; flex-direction: column; gap: 3.5rem; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: inherit; }
+.brand svg { width: 26px; height: auto; flex: none; }
+.brand b { font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; color: var(--brand); }
+.brand span { font-family: var(--f-display); font-weight: 500; font-size: 1.15rem; }
+.eyebrow { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+
+h1, h2 { font-family: var(--f-display); font-weight: 800; letter-spacing: -.025em; line-height: 1.05; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); }
+h2 { font-size: clamp(1.6rem, 4.5vw, 2.1rem); }
+h1 em, h2 em { font-style: normal; color: var(--brand); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: .12em; text-underline-offset: .14em; }
+p { margin: 0; max-width: 62ch; }
+.lead { font-size: 1.15rem; }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+section { display: flex; flex-direction: column; gap: 1.1rem; }
+.hero { gap: 1.25rem; }
+.byline { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.byline b { color: var(--fg); font-weight: 500; }
+
+/* ficha rápida de la ciudad */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.facts div { padding: .9rem 1rem .9rem 0; display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.facts dt { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: 1.45rem; letter-spacing: -.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.facts dd small { display: block; font-family: var(--f-mono); font-weight: 400; font-size: .78rem; letter-spacing: 0; color: var(--muted); }
+
+/* comparación principal */
+.versus { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+.fig { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem; display: flex; flex-direction: column; gap: .35rem; }
+.fig .num { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.2rem, 7vw, 3rem); line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.fig.main .num { color: var(--brand); }
+.fig .lbl { font-size: .95rem; }
+.fig .tag { font-family: var(--f-mono); font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+
+/* barras */
+.bars { display: flex; flex-direction: column; gap: .9rem; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: .3rem; }
+.bar-head { display: flex; justify-content: space-between; gap: 1rem; font-size: .92rem; }
+.bar-head > span:first-child { min-width: 0; }
+.bar-head .v { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-head .v small { color: var(--muted); font-size: .8rem; }
+.track { height: 14px; background: var(--track); border-radius: 4px; overflow: hidden; }
+.fill { height: 100%; border-radius: 4px; background: var(--brand); width: var(--w); }
+.fill.acc { background: var(--accent); }
+.fill.soft { background: var(--muted); opacity: .55; }
+.bars.compact { gap: .7rem; }
+.bars.compact .track { height: 10px; }
+.cand { color: var(--muted); font-size: .82rem; }
+
+.callout { border-left: 4px solid var(--accent); padding: .25rem 0 .25rem 1rem; font-size: 1.05rem; }
+.callout b { color: var(--brand); }
+
+/* participación */
+.turnout { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+.turnout .pct { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.4rem, 8vw, 3rem); line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.turnout .pct.acc { color: var(--accent); }
+
+/* la cuenta: grilla de personas */
+.odd { display: flex; flex-direction: column; gap: .75rem; }
+.odd .big { font-family: var(--f-display); font-weight: 800; font-size: 2.2rem; line-height: 1; letter-spacing: -.02em; }
+.odd .big b { color: var(--accent); }
+.dots { display: grid; grid-template-columns: repeat(9, 1.4rem); gap: 6px; }
+.dots i { aspect-ratio: 1; border-radius: 50%; background: var(--seat-empty); }
+.dots i.on { background: var(--accent); }
+
+/* Concejo */
+.seats { display: flex; flex-wrap: wrap; gap: 1.1rem 1.4rem; align-items: flex-start; }
+.grp { display: flex; flex-direction: column; gap: .4rem; }
+.grp .row { display: grid; grid-template-columns: repeat(5, .95rem); gap: 4px; }
+.grp .row i { width: .95rem; height: .95rem; border-radius: 50%; }
+.grp span { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .04em; color: var(--muted); max-width: 8rem; line-height: 1.25; }
+.grp span b { color: var(--fg); font-weight: 500; }
+.sw-a { background: var(--brand); }
+.sw-b { background: var(--green); }
+.sw-gov { background: var(--accent); }
+.majority { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); }
+.majority b { color: var(--fg); font-weight: 500; }
+
+/* 2027 */
+.date { font-family: var(--f-display); font-weight: 800; font-size: clamp(3rem, 12vw, 4.5rem); line-height: 1; letter-spacing: -.03em; color: var(--accent); }
+
+.sources { font-size: .85rem; color: var(--muted); display: flex; flex-direction: column; gap: .6rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.sources h3 { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg); margin: 0; font-weight: 500; }
+.sources ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .3rem; }
+.sources a { color: var(--brand); overflow-wrap: anywhere; }
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-family: var(--f-mono); font-size: .8rem; color: var(--muted); }
+footer a { color: var(--brand); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .fill { animation: grow .9s cubic-bezier(.2,.7,.2,1) both; transform-origin: left; }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="https://instagram.com/maiencriollo" aria-label="Mai en criollo en Instagram">
+      <svg viewBox="34 34 88 120" aria-hidden="true">
+        <defs><clipPath id="pin"><path d="M78 150 C 56 120, 38 102, 38 78 a40 40 0 0 1 80 0 c0 24 -18 42 -40 72z"/></clipPath></defs>
+        <path d="M78 150 C 56 120, 38 102, 38 78 a40 40 0 0 1 80 0 c0 24 -18 42 -40 72z" fill="#5B8DB8"/>
+        <g clip-path="url(#pin)">
+          <g transform="translate(78 92)" stroke="#F7F2E9" stroke-width="4" stroke-linecap="round">
+            <line y1="-18" y2="-34" transform="rotate(-67.5)"/><line y1="-18" y2="-34" transform="rotate(-45)"/><line y1="-18" y2="-34" transform="rotate(-22.5)"/><line y1="-18" y2="-34"/><line y1="-18" y2="-34" transform="rotate(22.5)"/><line y1="-18" y2="-34" transform="rotate(45)"/><line y1="-18" y2="-34" transform="rotate(67.5)"/>
+          </g>
+          <circle cx="78" cy="92" r="14" fill="#F7F2E9"/>
+          <rect x="30" y="92" width="100" height="70" fill="#F26B3A"/>
+        </g>
+      </svg>
+      <span>en</span><b>criollo</b>
+    </a>
+    <span class="eyebrow">por Maia Fleischman</span>
+  </header>
+
+  <section class="hero" aria-labelledby="t1">
+    <span class="eyebrow">Córdoba · Agenda federal</span>
+    <h1 id="t1">Córdoba, <em>en criollo</em></h1>
+    <p class="lead">Quién gobierna, cómo se arma el Concejo y cómo votó la ciudad. Y el dato: en 2023 la capital eligió un intendente peronista y, cuatro meses después, 3 de cada 4 votos fueron para Milei.</p>
+    <p class="byline">Investigación y datos: <b>Maia Fleischman</b></p>
+    <dl class="facts">
+      <div><dt>Habitantes</dt><dd>1.498.060<small>Censo 2022 · la 2.ª ciudad del país</small></dd></div>
+      <div><dt>Intendente</dt><dd>Daniel Passerini<small>2023 → 2027 · Hacemos Unidos</small></dd></div>
+      <div><dt>Concejo Deliberante</dt><dd>31 bancas<small>se renuevan todas juntas</small></dd></div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="t2">
+    <span class="eyebrow">El dato · La regla del Concejo</span>
+    <h2 id="t2">Sacó menos de la mitad de los votos y se quedó con <em>más de la mitad</em> del Concejo</h2>
+    <p>La Carta Orgánica de la ciudad (o sea, su Constitución) tiene una "cláusula de gobernabilidad": la lista que gana, por la diferencia que sea, se lleva la mitad más una de las bancas. Es decir, 16 de 31.</p>
+    <div class="versus">
+      <div class="fig main">
+        <span class="num">48,6 %</span>
+        <span class="lbl">de los votos sacó Hacemos Unidos por Córdoba en 2023</span>
+        <span class="tag">ESCRUTINIO DEFINITIVO · INTENDENTE 2023</span>
+      </div>
+      <div class="fig">
+        <span class="num">51,6 %</span>
+        <span class="lbl">de las bancas del Concejo le tocaron: <b>16 de 31</b></span>
+        <span class="tag">TRIBUNAL ELECTORAL MUNICIPAL</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="seats" id="seats" role="img" aria-label="Las 31 bancas del Concejo Deliberante de Córdoba según la elección de 2023: 16 de Hacemos Unidos por Córdoba, 14 de Juntos por el Cambio y 1 del Frente de Izquierda"></div>
+      <p class="majority">Mayoría: <b>16 bancas</b> · En mandarina, la lista del intendente.</p>
+      <p class="muted small">Reparto de bancas que salió de la elección del 23/07/2023. Después, la oposición se dividió en varios bloques.</p>
+    </div>
+    <p class="callout">Traducción: en Córdoba, el intendente <b>arranca con mayoría propia</b> en el Concejo. Puede aprobar ordenanzas (las leyes de la ciudad) sin negociar con la oposición.</p>
+  </section>
+
+  <section aria-labelledby="t3">
+    <span class="eyebrow">Intendente · 23 de julio de 2023</span>
+    <h2 id="t3">Ganó Passerini por casi 8 puntos</h2>
+    <p>Fue una elección solo de la ciudad, un mes después de la de gobernador. La diferencia entre el primero y el segundo fue de 51.332 votos.</p>
+    <div class="card" aria-label="Votos por lista para intendente de Córdoba, 2023">
+      <div class="bars compact">
+        <div class="bar-row">
+          <div class="bar-head"><span>Hacemos Unidos por Córdoba <span class="cand">· Daniel Passerini</span></span><span class="v">48,6 % <small>314.836</small></span></div>
+          <div class="track"><div class="fill" style="--w:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Juntos por el Cambio <span class="cand">· Rodrigo de Loredo</span></span><span class="v">40,7 % <small>263.504</small></span></div>
+          <div class="track"><div class="fill" style="--w:83.70%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Frente de Izquierda y de Trabajadores - Unidad</span><span class="v">2,9 % <small>18.744</small></span></div>
+          <div class="track"><div class="fill soft" style="--w:5.95%"></div></div>
+        </div>
+      </div>
+      <p class="muted small">Escrutinio definitivo. Solo las tres listas más votadas. La barra más larga es la lista ganadora; las demás están a escala.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="t4">
+    <span class="eyebrow">¿Cuánta gente fue a votar?</span>
+    <h2 id="t4">La elección de intendente con menos gente desde 1983</h2>
+    <p>Votó el <b>59,29 %</b> del padrón. Según el Tribunal Electoral Municipal, fue la participación más baja desde la vuelta de la democracia.</p>
+    <div class="card" aria-label="Padrón de la ciudad de Córdoba en la elección municipal de 2023">
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-head"><span>Personas habilitadas para votar</span><span class="v">1.129.767</span></div>
+          <div class="track"><div class="fill soft" style="--w:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Votaron</span><span class="v">≈669.800 <small>59,3 %</small></span></div>
+          <div class="track"><div class="fill soft" style="--w:59.29%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span><b>No votaron</b></span><span class="v">≈459.900 <small>40,7 %</small></span></div>
+          <div class="track"><div class="fill" style="--w:40.71%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Diferencia entre el primero y el segundo</span><span class="v">51.332 <small>4,5 %</small></span></div>
+          <div class="track"><div class="fill acc" style="--w:4.54%"></div></div>
+        </div>
+      </div>
+      <p class="muted small">Barras a escala sobre el total de personas habilitadas.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="t4b">
+    <span class="eyebrow">El dato barrial · Centros vecinales 2025</span>
+    <h2 id="t4b">En <em>8 de cada 10</em> barrios, no hubo nada que votar</h2>
+    <p>Córdoba tiene 400 centros vecinales: la organización de cada barrio, que también se elige con votos. Entre 2024 y 2025 renovaron autoridades 348. En 286 se presentó <b>una sola lista</b>, que quedó elegida sin votación.</p>
+    <div class="card odd">
+      <span class="big"><b>286</b> de 348</span>
+      <p>centros vecinales eligieron autoridades con lista única. Solo en 58 hubo más de una lista y los vecinos tuvieron que elegir.</p>
+      <div class="dots" id="dots10" style="grid-template-columns:repeat(10, 1.4rem)" role="img" aria-label="10 círculos, 8 pintados"></div>
+      <p class="muted small">286 ÷ 348 = 82 %. En cada círculo pintado, un barrio sin competencia.</p>
+    </div>
+    <div class="card" aria-label="Cómo se eligieron los centros vecinales de Córdoba, 2024-2025">
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-head"><span>Centros vecinales que renovaron autoridades</span><span class="v">348</span></div>
+          <div class="track"><div class="fill soft" style="--w:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span><b>Con lista única</b></span><span class="v">286 <small>82 %</small></span></div>
+          <div class="track"><div class="fill" style="--w:82.18%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Con más de una lista</span><span class="v">58 <small>17 %</small></span></div>
+          <div class="track"><div class="fill acc" style="--w:16.67%"></div></div>
+        </div>
+      </div>
+      <p class="muted small">Barras a escala sobre los 348 centros que renovaron. Las fuentes no explican 4 casos que no suman en ninguno de los dos grupos.</p>
+    </div>
+    <p class="callout">Traducción: el gobierno más cercano a tu casa casi nunca se disputa. Y donde sí hubo competencia, en <b>50 de los 58</b> barrios ganaron listas vinculadas al peronismo, el espacio del intendente.</p>
+  </section>
+
+  <section aria-labelledby="t5">
+    <span class="eyebrow">El dato · La ciudad que vota cruzado</span>
+    <h2 id="t5">En julio eligió un intendente peronista. En noviembre, <em>3 de cada 4</em> votaron a Milei</h2>
+    <p>Mismo año, misma gente, mismas escuelas. El cordobés de la capital separa muy bien a quién vota para la ciudad y a quién para el país.</p>
+    <div class="versus" style="grid-template-columns:repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr))">
+      <div class="fig">
+        <span class="num" style="font-size:2rem">48,6 %</span>
+        <span class="lbl"><b>Julio 2023 · intendente.</b> Gana Passerini (Hacemos Unidos por Córdoba)</span>
+        <span class="tag">ESCRUTINIO DEFINITIVO</span>
+      </div>
+      <div class="fig main">
+        <span class="num" style="font-size:2rem">3 de cada 4</span>
+        <span class="lbl"><b>Noviembre 2023 · balotaje.</b> Votos para Milei en la ciudad</span>
+        <span class="tag">PROVISORIO · ENTRE 75 % Y 79 % SEGÚN LA FUENTE</span>
+      </div>
+      <div class="fig">
+        <span class="num" style="font-size:2rem">44,17 %</span>
+        <span class="lbl"><b>Octubre 2025 · diputados.</b> Gana La Libertad Avanza en la ciudad</span>
+        <span class="tag">PROVISORIO</span>
+      </div>
+    </div>
+    <p>En 2025 no se votaba intendente, pero sirve como termómetro. La Libertad Avanza le sacó casi 19 puntos a Provincias Unidas (el espacio de Schiaretti, del que también forma parte Passerini).</p>
+    <div class="card" aria-label="Porcentaje por lista en la ciudad de Córdoba, diputados nacionales 2025">
+      <div class="bars compact">
+        <div class="bar-row">
+          <div class="bar-head"><span>La Libertad Avanza <span class="cand">· Gonzalo Roca</span></span><span class="v">44,17 %</span></div>
+          <div class="track"><div class="fill" style="--w:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Provincias Unidas <span class="cand">· Juan Schiaretti</span></span><span class="v">25,32 %</span></div>
+          <div class="track"><div class="fill" style="--w:57.32%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-head"><span>Defendamos Córdoba <span class="cand">· Natalia de la Sota</span></span><span class="v">8,29 %</span></div>
+          <div class="track"><div class="fill soft" style="--w:18.77%"></div></div>
+        </div>
+      </div>
+      <p class="muted small">Departamento Capital, con casi todas las mesas escrutadas (provisorio). Participación en la ciudad: 65,98 %. En toda la provincia: LLA 42,4 % y Provincias Unidas 28,3 %.</p>
+    </div>
+    <p class="callout">Traducción: en Córdoba, <b>ganar el país no es ganar la ciudad</b>, y al revés. Por eso en 2027 la pregunta de todos los espacios va a ser la misma: ¿se vota en clave local o en clave nacional?</p>
+  </section>
+
+  <section aria-labelledby="t6">
+    <span class="eyebrow">¿Y esto en qué te cambia?</span>
+    <span class="date">2027</span>
+    <h2 id="t6">Se elige intendente y se renuevan las 31 bancas del Concejo</h2>
+    <p>El mandato de Passerini termina en diciembre de 2027. Con la cláusula de gobernabilidad, quien gane se lleva también la mayoría del Concejo. Y con una ciudad que vota cruzado, la campaña se va a jugar en una sola pregunta: ¿se vota la cuadra o se vota el país?</p>
+  </section>
+
+  <section class="sources" aria-labelledby="t7">
+    <h3 id="t7">Fuentes y método</h3>
+    <ul>
+      <li>Votos, padrón y bancas 2023: escrutinio definitivo del Tribunal Electoral Municipal, informado por <a href="https://www.cadena3.com/noticia/cadena-3-elecciones-2023/termino-el-escrutinio-definitivo-en-cordoba-y-se-amplio-la-ventaja-de-passerini_364591">Cadena 3</a> (28/07/2023).</li>
+      <li>Participación 2023 (59,29 % del padrón): Junta Electoral, informado por <a href="https://hoydia.com.ar/politica/tras-el-escrutinio-definitivo-passerini-aumento-su-ventaja-sobre-de-loredo">Hoy Día Córdoba</a> (28/07/2023).</li>
+      <li>Cláusula de gobernabilidad: Carta Orgánica Municipal de Córdoba, art. 137, inc. 3, citada por <a href="https://www.letrap.com.ar/politica/cordoba-picante-y-espuma-asi-sera-el-concejo-deliberante-que-viene-n5401712">Letra P</a>. Integración del Concejo: <a href="https://cdcordoba.gob.ar/autoridades/">Concejo Deliberante de Córdoba</a>, consultado el 04/11/2026.</li>
+      <li>Votantes y no votantes 2023: cálculo propio (1.129.767 × 59,29 %).</li>
+      <li>Centros vecinales: 400 reconocidos, 348 renovados en el ciclo 2024-2025, 286 con lista única, 58 con más de una lista y 50 ganados por listas vinculadas al peronismo. <a href="https://www.perfil.com/noticias/cordoba/votaron-29-mil-vecinos-y-el-peronismo-arraso-radiografia-de-las-elecciones-barriales-en-cordoba.phtml">Perfil Córdoba</a> (05/06/2025) y <a href="https://www.letrap.com.ar/politica/daniel-passerini-sello-el-dominio-del-pj-los-centros-vecinales-cordoba-todos-los-resultados-n5416276">Letra P</a> (02/06/2025). "8 de cada 10": cálculo propio.</li>
+      <li>Elección 2025 en la ciudad: datos provisorios de la Junta Electoral Nacional, publicados por <a href="https://www.perfil.com/noticias/cordoba/asi-voto-a-milei-la-ciudad-de-cordoba-en-las-elecciones-legislativas-2025.phtml">Perfil Córdoba</a> (27/10/2025). Provincia: <a href="https://www.cadena3.com/noticia/elecciones-legislativas-2025/categorico-triunfo-de-la-libertad-avanza-en-cordoba-gano-por-14-puntos_478952">Cadena 3</a> (26/10/2025).</li>
+      <li>Balotaje 19/11/2023 en la ciudad: 79 % según <a href="https://www.baenegocios.com/politica/Javier-Milei-arraso-en-Cordoba-y-Juan-Schiaretti-felicito-a-los-cordobeses-20231119-0053.html">BAE Negocios</a> y 75 % según Clarín, ambos con el escrutinio provisorio; por eso se redondea a "3 de cada 4". Provincia: 74,05 % con el 99,89 % de las mesas (<a href="https://www.lavozdesanjusto.com.ar/en-san-francisco-y-cordoba-paliza-electoral-de-milei-a-massa">La Voz de San Justo</a>).</li>
+      <li>Población: Censo 2022, resultados definitivos (INDEC), localidad de Córdoba, publicado por <a href="https://eldoce.tv/actualidad/2024/07/12/difundieron-datos-definitivos-del-censo-2022-las-siete-ciudades-mas-pobladas-de-cordoba">El Doce</a>.</li>
+      <li>Elaboración y análisis: Maia Fleischman.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>Maia Fleischman · Mai en criollo</span>
+    <a href="https://instagram.com/maiencriollo">@maiencriollo</a>
+  </footer>
+</div>
+
+<script>
+// Grilla de "8 de cada 10"
+const d10 = document.getElementById('dots10');
+for (let i = 0; i < 10; i++) {
+  const d = document.createElement('i');
+  if (i < 8) d.className = 'on';
+  d10.appendChild(d);
+}
+
+// Bancas del Concejo según la elección de 2023: la lista del intendente en mandarina; las demás alternan celeste y verde
+const blocs = [
+  ['Hacemos Unidos por Córdoba', 16, 'gov'],
+  ['Juntos por el Cambio', 14, 'a'],
+  ['Frente de Izquierda', 1, 'b'],
+];
+const box = document.getElementById('seats');
+blocs.forEach(([name, n, c]) => {
+  const g = document.createElement('div');
+  g.className = 'grp';
+  g.innerHTML = `<div class="row">${('<i class="sw-' + c + '"></i>').repeat(n)}</div><span><b>${n}</b> · ${name}</span>`;
+  box.appendChild(g);
+});
+</script>
